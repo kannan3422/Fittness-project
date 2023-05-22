@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Signup Page</title>
+  <link rel="stylesheet" type="text/css" href="signup.css">
+</head>
+
+<body>
+  <div class="login-page">
+    <div class="form">
+      <h2>Signup</h2>
+      <form name="myform" class="form">
+        <input type="text" placeholder="First Name" id="fname" oninput="return validate_fname()">
+        <p id="valname1"></p><br>
+        <input type="text" placeholder="Last Name" id="lname" oninput="return validate_lname()">
+        <p id="valname2"></p><br>
+        <input type="email" placeholder="E-mail" id="email" oninput="return validate_email()">
+        <p id="valname3"></p><br>
+        <input type="date" placeholder="D.O.B" id="date" oninput="return validate_date()">
+        <p id="valname4"></p><br>
+        <select name="Gender" id="gender" style="font-family: 'Roboto', sans-serif;
+          outline: none;
+          width: 100%;
+          border: 0;
+          margin: 0 0 15px;
+          padding: 15px;
+          box-sizing: border-box;
+          font-size: 14px;
+          border-radius: 20px;
+          background-color: rgba(255, 255, 255, 0.7);" oninput="return validate_gender()">
+          <option value="">Gender</option>
+          <option name="Gender" value="Male">Male</option>
+          <option name="Gender" value="Female">Female</option>
+          <option name="Gender" value="Prefer not to say">Prefer not to say</option>
+        </select>
+        <p id="valname5"></p><br>
+        <input type="text" id="mno" name="mno" placeholder="Mobile Number" oninput="return validate_mobile()">
+        <p id="valname6"></p><br>
+        <input type="text" placeholder="Height" id="h" oninput="return validate_h()">
+        <p id="valname7"></p><br>
+        <input type="text" placeholder="Weight" id="w" oninput="return validate_w()">
+        <p id="valname8"></p><br>
+        <select name="Diet" id="diet" style="font-family: 'Roboto', sans-serif;
+          outline: none;
+          width: 100%;
+          border: 0;
+          margin: 0 0 15px;
+          padding: 15px;
+          box-sizing: border-box;
+          font-size: 14px;
+          border-radius: 20px;
+          background-color: rgba(255, 255, 255, 0.7);" oninput="return validate_diet()">
+          <option value="">Diet</option>
+          <option name="Diet" value="Yes">Yes</option>
+          <option name="Diet" value="No">No</option>
+        </select>
+        <p id="valname9"></p><br>
+        <input type="password" placeholder="Password" id="pass" oninput="return validate_pass()">
+        <p id="valname10"></p><br>
+        <input type="password" placeholder="Confirm Password" id="cpass" oninput="return validate_cpass()">
+        <p id="valname11"></p><br>
+        <button type="submit" id="insert" name="insert" onclick="window.location.href='https://localhost:3000/';">Register Now!!</button>
+        <p style="color: white;">Already registered?, or after regsitering Click here to go to <a href="login.html"
+            style="color: whitesmoke;">login page</a>!!</p>
+      </form>
+      <p id="res"></p>
+    </div>
+  </div>
+</body>
+<script>
+  const fname = document.getElementById('fname');
+  const lname = document.getElementById('lname');
+  const email = document.getElementById('email');
+  const date = document.getElementById('date');
+  const gender = document.getElementById('gender');
+  const mno = document.getElementById('mno');
+  const h = document.getElementById('h');
+  const w = document.getElementById('w');
+  const diet = document.getElementById('diet');
+  const pass = document.getElementById('pass');
+  const cpass = document.getElementById('cpass');
+  const insert = document.getElementById('insert');
+  const result = document.getElementById('res');
+
+  function validate_fname() {
+    var a = document.myform.fname.value;
+    if (a.length < 5) {
+      document.getElementById('valname1').innerHTML = "Length must be greater than 5"
+      document.myform.fname.focus();
+      return false;
+    }
+    if (!isNaN(a)) {
+      document.getElementById('valname1').innerHTML = "Enter valid name"
+      document.myform.fname.select();
+      return false;
+    }
+    document.getElementById('valname1').innerHTML = ""
+  }
+
+  function validate_lname() {
+    var b = document.myform.lname.value;
+    if (b.length < 5) {
+      document.getElementById('valname2').innerHTML = "Length must be greater than 5"
+      document.myform.lname.focus();
+      return false;
+    }
+    if (!isNaN(b)) {
+      document.getElementById('valname2').innerHTML = "Enter valid name"
+      document.myform.lname.select();
+      return false;
+    }
+    document.getElementById('valname2').innerHTML = ""
+  }
+
+  function validate_email() {
+    var d = document.myform.email.value;
+    if (d == "") {
+      document.getElementById('valname3').innerHTML = "Enter a valid E-mail"
+      document.myform.mail.focus();
+      return false;
+    }
+    var atposition = d.indexOf("@");
+    var dotposition = d.lastIndexOf(".");
+    if (atposition < 1 || dotposition < atposition + 2 || dotposition + 2 >= d.length) {
+      document.getElementById('valname3').innerHTML = "Enter a valid E-mail"
+      return false;
+    }
+    document.getElementById('valname3').innerHTML = ""
+
+  }
+
+  function validate_date() {
+
+    var date = document.myform.date;
+    if (date.selectedIndex == 0) {
+      document.getElementById('valname4').innerHTML = "Select D.O.B"
+      document.myform.gender.focus();
+      return false;
+    }
+    document.getElementById('valname4').innerHTML = ""
+  }
+
+  function validate_gender() {
+
+    var gender = document.myform.gender;
+    if (gender.selectedIndex == 0) {
+      document.getElementById('valname5').innerHTML = "Enter a valid E-mail"
+      document.myform.gender.focus();
+      return false;
+    }
+    document.getElementById('valname5').innerHTML = ""
+  }
+
+  function validate_mobile() {
+    var m = document.myform.mno.value;
+    if (m == "") {
+      document.getElementById('valname6').innerHTML = "Enter a valid Mobile Number"
+      document.myform.mno.focus();
+      return false;
+    }
+    else if (m.length < 10 || m.length > 10) {
+      document.getElementById('valname6').innerHTML = "The length should be 10"
+      document.myform.mno.focus();
+      return false;
+    }
+    document.getElementById('valname6').innerHTML = ""
+  }
+
+  function validate_h() {
+
+    var h = document.myform.h.value;
+    if (h == "") {
+      document.getElementById('valname7').innerHTML = "Height is Empty"
+      document.myform.h.focus();
+      return false;
+    }
+    document.getElementById('valname7').innerHTML = ""
+  }
+  function validate_w() {
+
+    var w = document.myform.w.value;
+    if (w == "") {
+      document.getElementById('valname8').innerHTML = "Weight is Empty"
+      document.myform.w.focus();
+      return false;
+    }
+    document.getElementById('valname8').innerHTML = ""
+  }
+  function validate_diet() {
+
+    var diet = document.myform.diet;
+    if (diet.selectedIndex == 0) {
+      document.getElementById('valname9').innerHTML = "Enter a valid  diet"
+      document.myform.diet.focus();
+      return false;
+    }
+    document.getElementById('valname9').innerHTML = ""
+  }
+  function validate_pass() {
+    var p = document.myform.pass.value;
+    if (p == "") {
+      document.getElementById('valname10').innerHTML = "Password is Empty"
+      document.myform.pass.focus();
+      return false;
+    }
+    document.getElementById('valname10').innerHTML = ""
+  }
+  function validate_cpass() {
+    var p = document.myform.pass.value;
+    var cp = document.myform.cpass.value;
+    if (cp == "") {
+      document.getElementById('valname11').innerHTML = "Password is Empty"
+      document.myform.cpass.focus();
+      return false;
+    }
+    if (p != cp) {
+      document.getElementById('valname11').innerHTML = "Check if Password and Confirm Password are Same"
+      document.myform.cpass.focus();
+      return false;
+    }
+    document.getElementById('valname11').innerHTML = ""
+  }
+
+
+  insert.addEventListener('click', () => {
+    var data = {
+      First_Name: fname.value,
+      Last_Name: lname.value,
+      mail: email.value,
+      DOB: date.value,
+      Gender: gender.value,
+      Mobile: parseInt(mno.value),
+      Height: parseInt(h.value),
+      Weight: parseInt(w.value),
+      Diet: diet.value,
+      Password: pass.value,
+      CPassword: cpass.value
+    }
+    fetch('http://localhost:9000/api/Signup', {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json; chatset=UTF-8'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => { return res.json() })
+      .then(res => { result.innerText = JSON.stringify(res) });
+
+
+
+  })
+</script>
+
+</html>
